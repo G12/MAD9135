@@ -44,6 +44,26 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+        console.log('Received Crap Event: ' + id);
+		
+		if(navigator.geolocation)
+		{
+			navigator.geolocation.getCurrentPosition(function(position)
+			{
+				var str = "BAD lat:" + position.coords.latitude + " Lng:" + position.coords.longitude;
+				console.log(str);
+				var p = document.getElementById("Skookum");
+				p.innerHTML = str;
+			},
+			function(error)
+			{
+				console.log("Error:" + error.code + " " + error.message);
+			});
+		}
+		else
+		{
+			 console.log('No Geolocation Service');
+		}
+
     }
 };
