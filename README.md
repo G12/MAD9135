@@ -21,7 +21,7 @@ Students
 * Richard Jackson - rjacksn
 * Ian MacDonald - icpmacdo
 * Timotius Oktorio (kimtimotius)
-* Thomas Wiegand
+* Thomas Wiegand - G12
 * Shisong Yuan(Angus)
 * Gina Mazzolin
 * Warren Butland - warrenbutland
