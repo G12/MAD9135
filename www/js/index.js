@@ -96,7 +96,7 @@ var app = {
 							}
 						}
 					}
-				}
+				};
 				request.send();
 				p.innerHTML = html;
 			},
