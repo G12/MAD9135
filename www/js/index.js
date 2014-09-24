@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -28,6 +30,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('online', this.onOnline, false);
+        document.addEventListener('offline', this.onOffline, false);
     },
     // deviceready Event Handler
     //
@@ -36,14 +40,22 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+    onOnline: function() {
+    	console.log("ONLINE NOW");
+    },
+    onOffline: function() {
+    	console.log("OFFLINE NOW");
+    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         console.log('Received Event: ' + id);
+		app.checkConnection();
+		//navigator.onLine;
 		if(navigator.geolocation)
 		{
 			navigator.geolocation.getCurrentPosition(function(position)
 			{
-				var html = "<h4>Geographic location</h4><ul><li>lat:" + position.coords.latitude +
+				var html = "<h4>Location</h4><ul><li>lat:" + position.coords.latitude +
 				"</li><li>Lng:" + position.coords.longitude + "</li></ul>";
 				console.log(html);
 				var p = document.getElementById("Skookum");
@@ -110,4 +122,20 @@ var app = {
 			 console.log('No Geolocation Service');
 		}
     }
+    ,checkConnection: function() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    console.log('Connection type: ' + states[networkState]);
+}
+
 };
